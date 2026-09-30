@@ -6,22 +6,27 @@
 
 ## Инсталация
 
-Трябва ти файлът на твоята организация (`cct-org-<домейн>.json`) от IT. Без него се инсталира само приложението.
-
 **macOS, ChromeOS (Linux терминал), Debian/Ubuntu**
 
 ```bash
-curl -fsSL https://github.com/erida-ai/cct-project-releases/releases/latest/download/install.sh | bash -s -- --org ~/Downloads/cct-org-<домейн>.json
+curl -fsSL https://github.com/erida-ai/cct-project-releases/releases/latest/download/install.sh | bash
 ```
 
 **Windows (PowerShell)**
 
 ```powershell
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 irm https://github.com/erida-ai/cct-project-releases/releases/latest/download/install.ps1 -OutFile $env:TEMP\cct-install.ps1
-powershell -NoProfile -ExecutionPolicy Bypass -File $env:TEMP\cct-install.ps1 -Org $HOME\Downloads\cct-org-<домейн>.json
+powershell -NoProfile -ExecutionPolicy Bypass -File $env:TEMP\cct-install.ps1
 ```
 
-Инсталаторът не иска парола и администраторски права. Слага всичко в профила ти: Node.js 22+ (ако липсва), приложението, командата `cct-project`, Claude Code, MCP сървъра и Google вход със служебния ти акаунт. Пускането му наново е безопасно. За втора организация го пусни с нейния файл.
+Инсталаторът не иска парола и администраторски права. Слага всичко в профила ти: Node.js 22+ (ако липсва), приложението, командата `cct-project`, Claude Code и MCP сървъра.
+
+## Първо ползване: файл на организацията
+
+След инсталацията отвори Claude Code и кажи „настрой cct-project“. Claude ще поиска файла на твоята организация от IT: **Drive линк** или път до вече изтеглен `cct-org-<домейн>.json`. Файлът не е публичен, затова се отваря браузърът: влез със служебния Google акаунт и файлът се сваля сам. След това влизаш в Google със служебния акаунт.
+
+В терминал: `cct-project org add <Drive линк или път>`, после `cct-project init-auth --domain <домейн>`. На ChromeOS премести изтегления файл в *Linux files* и дай пътя му.
 
 ## Обновяване
 
